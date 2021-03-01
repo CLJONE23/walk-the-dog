@@ -34,7 +34,7 @@ class Location:
             self.state = fields['state']
 
     def GetWeather(self):
-        appid = '6bff32d903711eff507c78142b5f2c9f'
+        appid = 'enter id here'
         units = 'imperial'
         url = f'https://api.openweathermap.org/data/2.5/onecall?lat={self.latitude}&lon={self.longitude}&appid={appid}&units={units}'
 
