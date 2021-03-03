@@ -25,6 +25,29 @@ class Menu():
         else:
             _ = os.system('clear')
 
+    def try_again(self):
+        response = None
+        invalid = True
+        question = "\nMay the odds be with you!\n\nOr you could double check... Would you like to try again? (Y/N):\n\n"
+
+        while invalid:
+            response = input(question)
+
+            if response.lower() == "quit":
+                self.quit_routine()
+
+            if response.lower() != 'y' and response.lower() != 'n':
+                self.invalid_response(
+                    "You did not enter a 'Y' or 'N' to indicate yes or no, please try again.")
+                continue
+            else:
+                invalid = False
+
+        if response.lower() == 'y':
+            return True
+        else:
+            return False
+
     def quit_routine(self):
         self.clear()
         print("You entered the 'quit' command. Exiting the program now.")

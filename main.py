@@ -11,11 +11,21 @@ welcome_message = """
 
 """
 print(welcome_message)
-sleep(5)
+sleep(3)
 
 m = Menu()
-m.render()
 
-l = Location(m.zipcode, m.start, m.end)
-l.GetLocation()
-l.GetWeather()
+while True:
+
+    m.render()
+    l = Location(m.zipcode, m.start, m.end)
+    l.GetLocation()
+    l.GetWeather()
+    l.RankHours()
+
+    if m.try_again():
+        m.clear()
+        m.progress = 0
+        continue
+    else:
+        break
