@@ -22,3 +22,8 @@ I believe all of these dependicies are available with Python 3 but if you have t
 
 - [OpenWeather](https://openweathermap.org/) for weather data. This API requires a key. For Code Louisville, I will supply the key. Outside of Code Louisville, you will need to sign up for your own API key.
 - [opendatasoft](https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/api/) for zip code to coordinates conversion. This API does not require a key.
+
+# Steps
+
+1. Add API key to Location.py under the GetWeather function and save file
+1. Run main.py
