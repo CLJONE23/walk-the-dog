@@ -8,7 +8,7 @@ Quickly determine the best time to take your four legged friend for a walk outsi
 
 # Dependencies
 
-I believe all of these dependicies are available with Python 3 but if you have trouble with the app, please check that these dependencies are installed on your machine.
+I believe all of these dependicies are available with Python3 but if you have trouble with the app, please check that these dependencies are installed on your machine.
 
 - requests
 - json
@@ -25,5 +25,5 @@ I believe all of these dependicies are available with Python 3 but if you have t
 
 # Steps
 
-1. Add API key to Location.py under the GetWeather function and save file
+1. Add your OpenWeather api key to the 'api_key_for_weather' variable at the top of main.py and save.
 1. Run main.py
