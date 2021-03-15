@@ -9,7 +9,7 @@ class Hour:
         self.sunset = sunset
         self.temp = 0
         self.humidity = 0
-        self.pop = 0
+        self.pop = float(0)
         self.clouds = 0
         self.wind_speed = 0
         self.total_score = 0

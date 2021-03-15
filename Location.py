@@ -35,10 +35,9 @@ class Location:
             self.city = fields['city']
             self.state = fields['state']
 
-    def GetWeather(self):
-        appid = 'appid'
+    def GetWeather(self, api_key):
         units = 'imperial'
-        url = f'https://api.openweathermap.org/data/2.5/onecall?lat={self.latitude}&lon={self.longitude}&appid={appid}&units={units}'
+        url = f'https://api.openweathermap.org/data/2.5/onecall?lat={self.latitude}&lon={self.longitude}&appid={api_key}&units={units}'
 
         response = requests.get(url)
 
@@ -68,7 +67,7 @@ class Location:
                             s = day.sunset
                     h = Hour(hour, r, s)
                     h.Score()
-                    #print(f'(+{delta_to_hours}) {h.dt}: {h.total_score}')
+                    # print(f'(+{delta_to_hours}) {h.dt}: {h.total_score}')
                     self.hours.append(h)
 
     def RankHours(self):
@@ -101,4 +100,4 @@ class Location:
                 desc = hour.weather[0]['description']
                 date = hour.dt.strftime('(%a) %Y-%m-%d %H:%M %Z')
                 print('{:<5} {:<6} {:<30} {:<30} {:<6} {:<8} {:<11}'.format(i, hour.total_score, date,
-                                                                            desc.title(), (round(int(hour.pop)*100)), hour.temp, hour.feels_like))
+                                                                            desc.title(), str(int(float(hour.pop)*100))+'%', hour.temp, hour.feels_like))
