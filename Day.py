@@ -1,3 +1,5 @@
+# predefine what a Day object must contain
+
 class Day():
 
     def __init__(self, date, sunrise, sunset):

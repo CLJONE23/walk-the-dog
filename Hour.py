@@ -1,6 +1,8 @@
 from datetime import datetime
 from datetime import timedelta
 
+# define structure and scoring logic for each hour object
+
 
 class Hour:
 

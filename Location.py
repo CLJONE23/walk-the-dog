@@ -17,19 +17,13 @@ class Location:
         self.hours = list()
         self.days = list()
 
-    def PrintDictionary(self, d):
-        for k, v in d.items():
-            if type(v) is dict:
-                self.PrintDictionary(v)
-            else:
-                print(f'{k}: {v}')
-
     def GetLocation(self):
         url = f'https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q={self.zip}&rows=1'
         response = requests.get(url)
         if response.status_code == 200:
             data = json.loads(response.content.decode('utf-8'))
             fields = data['records'][0]['fields']
+            # update self with values from JSON response
             self.longitude = fields['longitude']
             self.latitude = fields['latitude']
             self.city = fields['city']
@@ -45,21 +39,27 @@ class Location:
 
             data = json.loads(response.content.decode('utf-8'))
 
+            # create a Day object for each Day node in JSON response and store in list at self.days
             for day in data['daily']:
+                # date only
                 d = datetime.fromtimestamp(day['dt']).date()
                 r = datetime.fromtimestamp(day['sunrise'])
                 s = datetime.fromtimestamp(day['sunset'])
                 self.days.append(Day(d, r, s))
 
+            # create an Hour object for each Hour node in JSON response to falls within window
             for hour in data['hourly']:
                 n = datetime.now().replace(microsecond=0, second=0, minute=0)
+                # date only
                 d = datetime.fromtimestamp(hour['dt'])
                 r = None
                 s = None
 
+                # get hour difference between JSON response datetime and datetime.now()
                 delta = d - n
                 delta_to_hours = (delta.total_seconds()/60)/60
 
+                # if delta falls within walk window, create Hour object, score and add to self.hours
                 if delta_to_hours >= self.start and delta_to_hours <= self.end:
                     for day in self.days:
                         if day.date == d.date():
@@ -67,14 +67,15 @@ class Location:
                             s = day.sunset
                     h = Hour(hour, r, s)
                     h.Score()
-                    # print(f'(+{delta_to_hours}) {h.dt}: {h.total_score}')
                     self.hours.append(h)
 
+    # sort hours based on their total_score, lowest to highest and render as table
     def RankHours(self):
         sorted_list = sorted(self.hours, key=operator.attrgetter(
             'total_score'))
         self.PrintResults(sorted_list)
 
+    # render sorted list as table
     def PrintResults(self, slist):
 
         if len(slist) < 1:

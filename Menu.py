@@ -11,6 +11,7 @@ class Menu():
         self.start = 0
         self.end = 48
 
+    # render pattern controls the order of render
     def render(self):
         self.clear()
         self.get_zipcode()
@@ -19,12 +20,14 @@ class Menu():
         self.clear()
         self.progress_bar()
 
+    # function to clear the console window, maintains focus on the elements I want
     def clear(self):
         if os.name == 'nt':
             _ = os.system('cls')
         else:
             _ = os.system('clear')
 
+    # see if the user wants to enter new data into the app for new results
     def try_again(self):
         response = None
         invalid = True
@@ -48,18 +51,21 @@ class Menu():
         else:
             return False
 
+    # ensure soft exit when user enters quit command
     def quit_routine(self):
         self.clear()
         print("You entered the 'quit' command. Exiting the program now.")
         sleep(2)
         quit()
 
+    # provide user with clear feedback when they enter invalid data during data collection
     def invalid_response(self, message):
         self.clear()
         print("[INVALID ENTRY]: " + message)
         sleep(3)
         self.clear()
 
+    # ensure that a string can be converted into an integer, throw error to prevent later issues
     def try_parse_int(self, string):
         try:
             int(string)
@@ -67,6 +73,7 @@ class Menu():
         except ValueError:
             return False
 
+    # display progress bar to give the user a visual sense of their progress
     def progress_bar(self):
         qm = "Type 'quit' to exit the program at anytime."
         p0 = "Progress [                              ] 0%"
@@ -106,6 +113,7 @@ class Menu():
                 f'[ Zip Code: {self.zipcode} | Start: {self.start} | End: {self.end} ]')
             print(sp + "\n")
 
+    # gather zipcode from user and ensure it is in valid format
     def get_zipcode(self):
         response = None
         invalid = True
@@ -129,6 +137,7 @@ class Menu():
                 self.progress = 33
                 invalid = False
 
+    # get start hour from user and ensure it's in valid format
     def get_start_hour(self):
         response = None
         invalid = True
@@ -162,6 +171,7 @@ class Menu():
                     "You did not enter an integer.  Please try again.")
                 continue
 
+    # get end hour and ensure it's in valid format
     def get_end_hour(self):
         response = None
         invalid = True

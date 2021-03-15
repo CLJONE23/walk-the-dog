@@ -2,6 +2,7 @@ from Location import Location
 from Menu import Menu
 from time import sleep
 
+# add api key
 api_key_for_weather = ''
 
 if api_key_for_weather == '':
@@ -24,10 +25,15 @@ else:
 
     while True:
 
+        # render menu from the Menu object
         m.render()
+        # create a location object from the information gathered in Menu object
         l = Location(m.zipcode, m.start, m.end)
+        # connect to api to gather longitude and latitude from entered zip code
         l.GetLocation()
+        # connect to api for weather
         l.GetWeather(api_key=api_key_for_weather)
+        # score hours and display results
         l.RankHours()
 
         if m.try_again():
