@@ -11,6 +11,12 @@ Quickly determine the best time to take your four legged friend for a walk outsi
 I believe all of these dependicies are available with Python3 but if you have trouble with the app, please check that these dependencies are installed on your machine.
 
 - requests
+
+```python
+Windows: py -m pip install requests
+Unix/macOS: python -m pip install requests
+```
+
 - json
 - datetime
 - time
