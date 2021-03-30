@@ -6,16 +6,31 @@ One rainy day I struggled to get my dog to outside. I felt terrible and vowed to
 
 Quickly determine the best time to take your four legged friend for a walk outside.
 
+# How it works
+
+You will enter your five digit US zip code, how many hours from now you'd like to start your walk window and finally how many hours from now your walk window will end. With this information the program will gather weather data, score that data using optimal weather conditions and then rank the scored data. Your walk window will then be presented to you in table format showing you the most optimal time to take your dog for a walk first (lowest score) and the least optimal time (highest score). The table will also include weather data for each hour/row.
+
 # Dependencies
 
-I believe all of these dependicies are available with Python3 but if you have trouble with the app, please check that these dependencies are installed on your machine.
+I believe that all dependencies other than 'requests' are installed with python 3, however if you get an error when trying to run the program ensure that all dependencies are installed.
+
+## Needs to be installed:
 
 - requests
 
-```python
-Windows: py -m pip install requests
-Unix/macOS: python -m pip install requests
+Windows
+
 ```
+py -m pip install requests
+```
+
+Unix/macOS
+
+```
+python -m pip install requests
+```
+
+## Should be installed:
 
 - json
 - datetime
